@@ -36,6 +36,7 @@ h2 {
 
 body {
    /* Add a background color for the desktop layout. */
+   background-color: #f2003c;
 }
 
 .wrapper {
@@ -46,6 +47,7 @@ body {
    margin: 1.5rem auto;
 
    /* Set a maximum width for the wrapper. */
+   max-width: 1000px;
 }
 
 main {
@@ -55,18 +57,24 @@ main {
    background-color: #cccccc;
 
    /* Use Flexbox to arrange the three boxes in a row. */
+   display: flex;
+   justify-content: space-around;
 }
 
 .gallery {
    padding: 1rem;
 
    /* Use Grid to create four columns with space between them. */
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   gap: 1rem;
 }
 
 .gallery img {
    border: 2px solid black;
-
+   
    /* Let each image shrink to fit its gallery column. */
+   max-width: 100%;
 }
 
 
@@ -75,7 +83,25 @@ main {
 
 /* Add the media query for viewport widths below 768px here.
    Inside it, change the background color and build the two-column layouts. */
+@media (width < 768px) {
+  body {
+    background-color: #1e90ff ;
+  }
 
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .box:last-of-type {
+  grid-column: span 2;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
 /* PHONE Media Query
 ------------------------------------*/
@@ -83,3 +109,30 @@ main {
 /* Add the media query for viewport widths below 480px here.
    Inside it, change the background color and stack the boxes and images.
    Keep this query after the tablet query so the phone rules can override it. */
+
+   @media (width < 480px) {
+    body {
+      background-color: #98fb98;
+    }
+
+    main {
+    display: flex;
+    flex-direction: column;
+    }
+
+    .box {
+      font-size: 155%;
+      border-radius: 2rem;
+    }
+
+    .gallery {
+      grid-template-columns: 1fr;
+      padding: 1rem 2rem;
+      background-color: #ac76f3;
+    }
+
+    .wrapper {
+      margin: 0;
+    }
+    
+   }
